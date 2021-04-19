@@ -14,4 +14,13 @@ package io.github.semver
  * @param patch the patch number
  */
 class Version(major: Int, minor: Int, patch: Int) {
+    init {
+        requireNonNegative(major, "major")
+        requireNonNegative(minor, "minor")
+        requireNonNegative(patch, "patch")
+    }
+}
+
+private fun requireNonNegative(number: Int, name: String) {
+    require(number >= 0) { "$name number can't be negative: $number" }
 }
