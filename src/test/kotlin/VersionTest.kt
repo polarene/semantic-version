@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.StringSpec
 
 class VersionTest : StringSpec({
     "should create a version from 3 ints" {
-        val v = Version(1, 0, 0)
+        Version(1, 0, 0)
     }
+
 })
