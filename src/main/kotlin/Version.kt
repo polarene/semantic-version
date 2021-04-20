@@ -20,6 +20,8 @@ class Version(private val major: Int = 0, private val minor: Int = 0, private va
         requireNonNegative(patch, "patch")
     }
 
+    val isStable = major > 0
+
     override fun toString(): String {
         return "$major.$minor.$patch"
     }

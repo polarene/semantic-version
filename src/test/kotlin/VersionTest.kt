@@ -2,6 +2,7 @@ package io.github.semver
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.datatest.forAll
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
@@ -28,5 +29,16 @@ class VersionTest : StringSpec({
 
     "should create an all-zero version by default" {
         "${Version()}" shouldBe "0.0.0"
+    }
+})
+
+class VersionPropertiesTest : BehaviorSpec({
+    Given("a major version zero (0.y.z)") {
+        val version = Version(0, 1, 23)
+        When("I check if it's stable") {
+            Then("it should be false") {
+                version.isStable shouldBe false
+            }
+        }
     }
 })
