@@ -1,3 +1,3 @@
 
-rootProject.name = "SemanticVersion"
+rootProject.name = "semantic-version"
 
