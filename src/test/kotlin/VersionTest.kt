@@ -4,14 +4,15 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.datatest.forAll
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.row
+import io.kotest.matchers.shouldBe
 
 
 class VersionTest : StringSpec({
-    "should create a version from 3 ints" {
+    "should create a version with positive or zero numbers" {
         Version(1, 0, 0)
     }
 
-    "should not create a version from negative numbers" {
+    "should not create a version with negative numbers" {
         forAll(
             row(-1, 0, 0),
             row(0, -1, 0),
@@ -20,4 +21,9 @@ class VersionTest : StringSpec({
             shouldThrow<IllegalArgumentException> { Version(maj, min, pat) }
         }
     }
+
+    "should produce a string representation of the form X.Y.Z" {
+        "${Version(1, 2, 3)}" shouldBe "1.2.3"
+    }
+
 })

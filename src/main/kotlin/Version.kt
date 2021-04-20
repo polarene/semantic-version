@@ -13,11 +13,15 @@ package io.github.semver
  * @param minor the minor number
  * @param patch the patch number
  */
-class Version(major: Int, minor: Int, patch: Int) {
+class Version(private val major: Int, private val minor: Int, private val patch: Int) {
     init {
         requireNonNegative(major, "major")
         requireNonNegative(minor, "minor")
         requireNonNegative(patch, "patch")
+    }
+
+    override fun toString(): String {
+        return "$major.$minor.$patch"
     }
 }
 
