@@ -13,7 +13,7 @@ package io.github.semver
  * @param minor the minor number
  * @param patch the patch number
  */
-class Version(private val major: Int, private val minor: Int, private val patch: Int) {
+class Version(private val major: Int = 0, private val minor: Int = 0, private val patch: Int = 0) {
     init {
         requireNonNegative(major, "major")
         requireNonNegative(minor, "minor")

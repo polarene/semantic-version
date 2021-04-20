@@ -26,4 +26,7 @@ class VersionTest : StringSpec({
         "${Version(1, 2, 3)}" shouldBe "1.2.3"
     }
 
+    "should create an all-zero version by default" {
+        "${Version()}" shouldBe "0.0.0"
+    }
 })
