@@ -6,9 +6,7 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNot
 import io.kotest.matchers.shouldNotBe
-import io.kotest.matchers.types.beTheSameInstanceAs
 
 
 class VersionTest : StringSpec({
@@ -63,6 +61,15 @@ class VersionPropertiesTest : BehaviorSpec({
             }
             And("the starting version is unaffected") {
                 "$starting" shouldNotBe "$compatible"
+            }
+        }
+        When("I make a breaking change") {
+            val breaking = starting.breakingChange()
+            Then("only the major version is incremented, minor and patch versions are reset") {
+                "$breaking" shouldBe "2.0.0"
+            }
+            And("the starting version is unaffected") {
+                "$starting" shouldNotBe "$breaking"
             }
         }
     }
