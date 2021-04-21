@@ -46,15 +46,23 @@ class VersionPropertiesTest : BehaviorSpec({
     }
 
     Given("a starting version") {
-        val starting = Version(1, 0, 1)
+        val starting = Version(1, 1, 1)
         When("I make a bugfix") {
             val bugfix = starting.bugfix()
             Then("only the patch version is incremented") {
-                "$bugfix" shouldBe "1.0.2"
+                "$bugfix" shouldBe "1.1.2"
             }
             And("the starting version is unaffected") {
-                bugfix shouldNot beTheSameInstanceAs(starting)
-                "$bugfix" shouldNotBe "$starting"
+                "$starting" shouldNotBe "$bugfix"
+            }
+        }
+        When("I make a backwards compatible change") {
+            val compatible = starting.compatibleChange()
+            Then("only the minor version is incremented, patch version is reset") {
+                "$compatible" shouldBe "1.2.0"
+            }
+            And("the starting version is unaffected") {
+                "$starting" shouldNotBe "$compatible"
             }
         }
     }
