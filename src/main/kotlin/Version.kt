@@ -13,17 +13,23 @@ package io.github.semver
  * @param minor the minor number
  * @param patch the patch number
  */
-class Version(private val major: Int = 0, private val minor: Int = 0, private val patch: Int = 0) {
+class Version(
+    private val major: Int = 0,
+    private val minor: Int = 0,
+    private val patch: Int = 0,
+    private val pre: PreReleaseId? = null
+) {
     init {
         requireNonNegative(major, "major")
         requireNonNegative(minor, "minor")
         requireNonNegative(patch, "patch")
     }
 
-    val isStable = major > 0
+    val isPreRelease = pre != null
+    val isStable = major > 0 && !isPreRelease
 
     override fun toString(): String {
-        return "$major.$minor.$patch"
+        return "$major.$minor.$patch" + if (isPreRelease) "-$pre" else ""
     }
 
     fun bugfix(): Version = Version(major, minor, patch + 1)
