@@ -25,6 +25,8 @@ class Version(private val major: Int = 0, private val minor: Int = 0, private va
     override fun toString(): String {
         return "$major.$minor.$patch"
     }
+
+    fun bugfix(): Version = Version(major, minor, patch + 1)
 }
 
 private fun requireNonNegative(number: Int, name: String) {
