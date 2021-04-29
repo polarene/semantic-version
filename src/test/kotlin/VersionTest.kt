@@ -1,5 +1,6 @@
 package io.github.semver
 
+import io.github.semver.identifier.PreRelease
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.datatest.forAll
 import io.kotest.core.spec.style.StringSpec
@@ -31,10 +32,10 @@ class VersionTest : StringSpec({
     }
 
     "should create a pre-release version" {
-        Version(1, 0, 0, PreReleaseId("alpha")).isPreRelease shouldBe true
+        Version(1, 0, 0, PreRelease("alpha")).isPreRelease shouldBe true
     }
 
-    "should produce a string representation of the form X.Y.Z-P for pre-release" {
-        "${Version(1, 0, 0, PreReleaseId("alpha"))}" shouldBe "1.0.0-alpha"
+    "should produce a string representation of the form X.Y.Z-P for a pre-release version" {
+        "${Version(1, 0, 0, PreRelease("alpha"))}" shouldBe "1.0.0-alpha"
     }
 })

@@ -1,5 +1,7 @@
 package io.github.semver
 
+import io.github.semver.identifier.PreRelease
+
 /**
  * A semantic version number.
  *
@@ -17,7 +19,7 @@ class Version(
     private val major: Int = 0,
     private val minor: Int = 0,
     private val patch: Int = 0,
-    private val pre: PreReleaseId? = null
+    private val pre: PreRelease? = null
 ) {
     init {
         requireNonNegative(major, "major")

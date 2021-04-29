@@ -1,5 +1,6 @@
 package io.github.semver
 
+import io.github.semver.identifier.PreRelease
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -15,7 +16,7 @@ class VersionPropertiesTest : BehaviorSpec({
     }
 
     Given("a pre-release version") {
-        val version = Version(1, 0, 0, PreReleaseId("alpha"))
+        val version = Version(1, 0, 0, PreRelease("alpha"))
         When("I check if it's stable") {
             Then("it should be false") {
                 version.isStable shouldBe false
