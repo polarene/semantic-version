@@ -1,14 +1,10 @@
 package io.github.semver.identifier
 
-class PreRelease(val identifier: String, vararg val identifiers: String) {
+class PreRelease(vararg val identifiers: String) {
     init {
-        require(identifier.isNotBlank())
+        require(identifiers.isNotEmpty())
         require(identifiers.all { it.isNotBlank() })
     }
 
-    override fun toString(): String = identifier + if (identifiers.isNotEmpty()) {
-        identifiers.joinToString(separator = ".", prefix = ".")
-    } else {
-        ""
-    }
+    override fun toString(): String = identifiers.joinToString(".")
 }
