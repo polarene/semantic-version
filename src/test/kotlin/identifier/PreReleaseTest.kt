@@ -58,6 +58,13 @@ class PreReleaseTest : StringSpec({
         }
     }
 
+    "should not allow leading zeroes in numeric identifiers" {
+        assertSoftly {
+            shouldThrow<IllegalArgumentException> { PreRelease("01") }
+            shouldThrow<IllegalArgumentException> { PreRelease("alpha", "02") }
+        }
+    }
+
     "should produce a string representation consisting of a series of dot separated identifiers" {
         assertSoftly {
             "${PreRelease("alpha")}" shouldBe "alpha"
