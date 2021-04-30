@@ -6,5 +6,9 @@ class PreRelease(val identifier: String, vararg val identifiers: String) {
         require(identifiers.all { it.isNotBlank() })
     }
 
-    override fun toString(): String = identifier
+    override fun toString(): String = identifier + if (identifiers.isNotEmpty()) {
+        identifiers.joinToString(separator = ".", prefix = ".")
+    } else {
+        ""
+    }
 }
