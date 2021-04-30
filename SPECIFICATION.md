@@ -1,6 +1,6 @@
-#Semantic Versioning 2.0.0
+# Semantic Versioning 2.0.0
 
-##Summary
+## Summary
 Given a version number MAJOR.MINOR.PATCH, increment the:
 
 1. MAJOR version when you make incompatible API changes,
@@ -8,7 +8,7 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 3. PATCH version when you make backwards compatible bug fixes.
 Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
    
-##Semantic Versioning Specification (SemVer)
+## Semantic Versioning Specification (SemVer)
 The keywords “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 1. Software using Semantic Versioning MUST declare a public API. This API could be declared in the code itself or exist strictly in documentation. However it is done, it SHOULD be precise and comprehensive.
