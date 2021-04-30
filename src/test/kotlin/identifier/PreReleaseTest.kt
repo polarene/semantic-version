@@ -3,6 +3,7 @@ package io.github.semver.identifier
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
@@ -38,6 +39,22 @@ class PreReleaseTest : StringSpec({
             shouldThrow<IllegalArgumentException> { PreRelease(" ") }
             shouldThrow<IllegalArgumentException> { PreRelease("rc", " ") }
             shouldThrow<IllegalArgumentException> { PreRelease("alpha", "1", " ") }
+        }
+    }
+
+    "should allow only identifiers comprising ASCII alphanumerics and hyphens" {
+        assertSoftly {
+            withClue("identifier characters allowed") {
+                shouldNotThrow<IllegalArgumentException> { PreRelease("x", "7", "z", "92") }
+                shouldNotThrow<IllegalArgumentException> { PreRelease("x-y-z", "-") }
+            }
+            withClue("identifier characters not allowed") {
+                shouldThrow<IllegalArgumentException> { PreRelease(".") }
+                shouldThrow<IllegalArgumentException> { PreRelease("àè") }
+                shouldThrow<IllegalArgumentException> { PreRelease("1*") }
+                shouldThrow<IllegalArgumentException> { PreRelease("rc+2") }
+                shouldThrow<IllegalArgumentException> { PreRelease("beta/1.2") }
+            }
         }
     }
 
