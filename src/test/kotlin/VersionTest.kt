@@ -37,5 +37,9 @@ class VersionTest : StringSpec({
 
     "should produce a string representation of the form X.Y.Z-P for a pre-release version" {
         "${Version(1, 0, 0, PreRelease("alpha"))}" shouldBe "1.0.0-alpha"
+        "${Version(1, 0, 0, PreRelease("alpha", "1"))}" shouldBe "1.0.0-alpha.1"
+        "${Version(1, 0, 0, PreRelease("0", "3", "7"))}" shouldBe "1.0.0-0.3.7"
+        "${Version(1, 0, 0, PreRelease("x", "7", "z", "92"))}" shouldBe "1.0.0-x.7.z.92"
+        "${Version(1, 0, 0, PreRelease("x-y-z", "-"))}" shouldBe "1.0.0-x-y-z.-"
     }
 })

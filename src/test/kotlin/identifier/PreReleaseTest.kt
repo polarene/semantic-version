@@ -60,8 +60,16 @@ class PreReleaseTest : StringSpec({
 
     "should not allow leading zeroes in numeric identifiers" {
         assertSoftly {
-            shouldThrow<IllegalArgumentException> { PreRelease("01") }
-            shouldThrow<IllegalArgumentException> { PreRelease("alpha", "02") }
+            withClue("leading zeroes allowed") {
+                shouldNotThrow<IllegalArgumentException> { PreRelease("0") }
+                shouldNotThrow<IllegalArgumentException> { PreRelease("0abcd") }
+                shouldNotThrow<IllegalArgumentException> { PreRelease("0-xyz") }
+            }
+            withClue("leading zeroes not allowed") {
+                shouldThrow<IllegalArgumentException> { PreRelease("01") }
+                shouldThrow<IllegalArgumentException> { PreRelease("alpha", "02") }
+                shouldThrow<IllegalArgumentException> { PreRelease("RC", "003", "nightly") }
+            }
         }
     }
 
