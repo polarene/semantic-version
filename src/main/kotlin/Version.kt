@@ -20,7 +20,7 @@ class Version(
     private val minor: Int = 0,
     private val patch: Int = 0,
     private val pre: PreRelease? = null
-) {
+) : Comparable<Version> {
     init {
         requireNonNegative(major, "major")
         requireNonNegative(minor, "minor")
@@ -30,13 +30,20 @@ class Version(
     val isPreRelease = pre != null
     val isStable = major > 0 && !isPreRelease
 
+    fun bugfix(): Version = Version(major, minor, patch + 1)
+    fun compatibleChange(): Version = Version(major, minor + 1, 0)
+    fun breakingChange(): Version = Version(major + 1, 0, 0)
+
     override fun toString(): String {
         return "$major.$minor.$patch" + if (isPreRelease) "-$pre" else ""
     }
 
-    fun bugfix(): Version = Version(major, minor, patch + 1)
-    fun compatibleChange(): Version = Version(major, minor + 1, 0)
-    fun breakingChange(): Version = Version(major + 1, 0, 0)
+    override fun compareTo(other: Version): Int {
+        return compareValuesBy(
+            this, other,
+            { it.major }, { it.minor }, { it.patch }
+        )
+    }
 }
 
 private fun requireNonNegative(number: Int, name: String) {
