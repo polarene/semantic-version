@@ -30,13 +30,11 @@ class Version(
     val isPreRelease = pre != null
     val isStable = major > 0 && !isPreRelease
 
-    fun bugfix(): Version = Version(major, minor, patch + 1)
-    fun compatibleChange(): Version = Version(major, minor + 1, 0)
-    fun breakingChange(): Version = Version(major + 1, 0, 0)
+    fun bugfix() = Version(major, minor, patch + 1)
+    fun compatibleChange() = Version(major, minor + 1, 0)
+    fun breakingChange() = Version(major + 1, 0, 0)
 
-    override fun toString(): String {
-        return "$major.$minor.$patch" + if (isPreRelease) "-$pre" else ""
-    }
+    override fun toString() = "$major.$minor.$patch" + if (isPreRelease) "-$pre" else ""
 
     override fun compareTo(other: Version): Int {
         return compareValuesBy(
