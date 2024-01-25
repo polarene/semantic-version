@@ -10,8 +10,10 @@ repositories {
     mavenCentral()
 }
 
+val kotestVersion: String by project
 dependencies {
-    testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
 }
 
 tasks.test {

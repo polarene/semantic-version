@@ -1,20 +1,23 @@
 package io.github.semver
 
 import io.github.semver.identifier.PreRelease
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.datatest.forAll
-import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.row
+import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
 
 class VersionTest : StringSpec({
     "should create a version with positive or zero numbers" {
         Version(1, 0, 0)
+class VersionTest : FreeSpec({
+    "should create a version with positive and zero numbers" {
     }
 
-    "should not create a version with negative numbers" {
-        forAll(
+    "should not create a version with negative numbers" - {
+        withData(
             row(-1, 0, 0),
             row(0, -1, 0),
             row(0, 0, -1),
