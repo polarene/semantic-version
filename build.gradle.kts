@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.4.32"
-    application
+    kotlin("jvm") version "1.9.22"
+    `java-library`
 }
 
 group = "io.github.polarene"
@@ -19,8 +17,3 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
