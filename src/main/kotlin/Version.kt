@@ -6,19 +6,20 @@ import io.github.semver.identifier.PreRelease
  * A semantic version number.
  *
  * Semantic versioning ("semver" in short) is a system of rules and requirements
- * that dictate how version numbers are assigned and incremented.
- * They take the form X.Y.Z (Major.Minor.Patch), where X, Y, and Z are non-negative integers.
+ * that dictate how version numbers are assigned and incremented. They take the
+ * form X.Y.Z (Major.Minor.Patch), where X, Y, and Z are non-negative integers.
  *
  * The specification is detailed at: [https://semver.org]
- * @author mmirk
- * @param major the major number
- * @param minor the minor number
- * @param patch the patch number
+ *
+ * @property major the major number
+ * @property minor the minor number
+ * @property patch the patch number
+ * @author Matteo Mirk
  */
 class Version(
-    private val major: Int = 0,
-    private val minor: Int = 0,
-    private val patch: Int = 0,
+    val major: Int = 0,
+    val minor: Int = 0,
+    val patch: Int = 0,
     private val pre: PreRelease? = null
 ) : Comparable<Version> {
     init {
