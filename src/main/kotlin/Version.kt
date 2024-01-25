@@ -43,9 +43,10 @@ class Version(
             { it.major }, { it.minor }, { it.patch }
         )
         if (comparison != 0) return comparison
+
         return pre?.let { p1 ->
             other.pre?.let { p2 -> p1.compareTo(p2) } ?: -1
-        } ?: 1
+        } ?: if (other.isPreRelease) 1 else 0
     }
 }
 
